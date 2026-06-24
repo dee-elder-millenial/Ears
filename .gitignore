@@ -15,7 +15,6 @@ realtime/logs/
 realtime/*.pid
 realtime/.conv_seen
 obs/*.pid
-obs/*.pid
 logs/
 errors/
 inbox/
@@ -23,6 +22,16 @@ processed/
 transcripts/
 video/
 sessions/
+
+# Non-code data
+*.wav
+*.mp3
+*.flac
+commands/*.jsonl
+commands/status.json
+
+# Runtime command/config artifacts
+commands/
 
 # Local noise
 .DS_Store
