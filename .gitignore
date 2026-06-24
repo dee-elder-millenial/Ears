@@ -15,7 +15,7 @@ realtime/logs/
 realtime/*.pid
 realtime/.conv_seen
 obs/*.pid
-obs/*.sh? # keep scripts tracked, only runtime pid files handled above
+obs/*.pid
 logs/
 errors/
 inbox/
