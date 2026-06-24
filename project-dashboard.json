@@ -1,0 +1,29 @@
+{
+  "id": "ears",
+  "name": "Ears",
+  "state": "Paused",
+  "updated_at": "2026-06-11T02:45:00Z",
+  "path": "/srv/cloud-mirror/Ears",
+  "resume_file": "/srv/cloud-mirror/Ears/HANDOFF.md",
+  "summary": "Local OBS audio/video ingest and voice-command bridge for Codex. RTMP ingest through MediaMTX, local ffmpeg audio chunking, faster-whisper transcription, and a conservative Robot wake-word command router are implemented. The router echoes interpreted commands and queues approved commands, but does not execute them automatically.",
+  "next_actions": [
+    "Restart MediaMTX and OBS, then run a clean voice-command session with `Robot, check the Ears status.` followed by spoken approval.",
+    "Make router confirmations visible in the active terminal without requiring a separate manual tail command.",
+    "Add an operator-facing drain step for `/srv/cloud-mirror/Ears/commands/approved.jsonl` so approved voice commands can be reviewed and handed to Codex intentionally.",
+    "Improve command grouping across audio chunk boundaries and tune confirmation timeout/cooldown after more real use.",
+    "Add a cleanup/archive script for old processed WAV chunks and stale session artifacts."
+  ],
+  "blockers": [
+    "No automatic executor is connected yet; approved voice commands are queued only.",
+    "Confirmation feedback is terminal/log based, not speaker based.",
+    "OBS must be configured to avoid desktop-audio feedback loops during command mode."
+  ],
+  "tags": [
+    "voice",
+    "obs",
+    "transcription",
+    "codex",
+    "local",
+    "prototype"
+  ]
+}

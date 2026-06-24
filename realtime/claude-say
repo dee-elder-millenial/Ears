@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Claude's voice. While speaking it (a) mutes the Ears transcriber so Claude's
+# own TTS isn't transcribed onto the screen, and (b) streams Claude's words onto
+# the display's lower line (claude track) so they scroll like Dee's. Male voice.
+# Usage: claude-say "text to speak"     (override voice: CLAUDE_SAY_VOICE=lessac)
+set -uo pipefail
+
+RT="/cloud-mirror/Ears/realtime"
+FLAG="$RT/mute"
+PY="/cloud-mirror/Ears/current-venv/bin/python"
+VOICE="${CLAUDE_SAY_VOICE:-ryan}"
+
+touch "$FLAG"
+trap 'rm -f "$FLAG"' EXIT
+
+# stream words to the screen (paced) in the background while we speak
+"$PY" "$RT/emit_claude_words.py" "$@" &
+emit_pid=$!
+
+dees-say -v "$VOICE" "$@"
+
+wait "$emit_pid" 2>/dev/null
+sleep 0.6          # let trailing room audio drain (discarded while muted)
+rm -f "$FLAG"

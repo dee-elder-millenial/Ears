@@ -1,0 +1,30 @@
+# Environment + dependencies
+.venv/
+envs/
+current-venv
+__pycache__/
+*.pyc
+
+# Large downloaded/runtime content
+realtime/models/
+realtime/whisper.cpp/
+downloads/
+
+# Runtime artifacts / generated files
+realtime/logs/
+realtime/*.pid
+realtime/.conv_seen
+obs/*.pid
+obs/*.sh? # keep scripts tracked, only runtime pid files handled above
+logs/
+errors/
+inbox/
+processed/
+transcripts/
+video/
+sessions/
+
+# Local noise
+.DS_Store
+.DS_Store?
+*~
